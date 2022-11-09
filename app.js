@@ -25,6 +25,7 @@ var usersRouter = require('./routes/users');
 var dumbellRouter = require('./routes/dumbell');
 var gridbuildRouter = require('./routes/gridbuild');
 var selectorRouter = require('./routes/selector');
+var resourceRouter = require('./routes/resource');
   
 var app = express();
 
@@ -43,6 +44,7 @@ app.use('/users', usersRouter);
 app.use('/dumbell', dumbellRouter);
 app.use('/gridbuild', gridbuildRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
 
 
 
