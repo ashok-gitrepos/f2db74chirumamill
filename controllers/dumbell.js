@@ -49,3 +49,18 @@ exports.dumbell_list = async function(req, res) {
         res.send(`{"error": ${err}}`);
     }  
 };
+
+
+
+// VIEWS
+// Handle a show all view
+exports.dumbell_view_all_Page = async function(req, res) {
+    try{
+    thedumbells = await dumbell.find();
+    res.render('dumbells', { title: 'dumbell Search Results', results: thedumbells });
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
