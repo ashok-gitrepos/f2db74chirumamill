@@ -7,5 +7,8 @@ var router = express.Router();
 //   //res.render('dumbell', { title: 'Search results dumbell' });
 //   router.get('/', dumbell_controlers.dumbell_view_all_Page );
 // });
+
+
+
 router.get('/', dumbell_controlers.dumbell_view_all_Page );
 module.exports = router;
