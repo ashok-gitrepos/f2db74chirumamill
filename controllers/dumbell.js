@@ -13,6 +13,10 @@ exports.dumbell_detail = function(req, res) {
 exports.dumbell_create_post = async function(req, res) {
     console.log(req.body)
     let document = new dumbell();
+    // We are looking for a body, since POST does not have query parameters.
+// Even though bodies can be in many different formats, we will be picky
+// and require that it be a json object
+// {"costume_type":"goat", "cost":12, "size":"large"}
     document.Dumbell_brand = req.body.Dumbell_brand;
     document.Dumbell_material = req.body.Dumbell_material;
     document.Dumbell_weight = req.body.Dumbell_weight;
@@ -26,6 +30,12 @@ exports.dumbell_create_post = async function(req, res) {
         res.send(`{"error": ${err}}`);
     }  
 };
+
+exports.costume_create_post = function(req, res) {
+res.send('NOT IMPLEMENTED: Costume create POST');
+};
+
+
 
 // Handle dumbell delete form on DELETE.
 exports.dumbell_delete = function(req, res) {
