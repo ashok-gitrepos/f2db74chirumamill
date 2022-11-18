@@ -1,23 +1,23 @@
-extends layout 
+extends layout
 
-block content 
-    h1= title 
-    - let id = toShow._id 
-    - let Dumbell_brand = toShow.Dumbell_brand 
-    - let Dumbell_material = toShow.Dumbell_material 
-    - let Dumbell_weight = toShow.Dumbell_weight 
-    div 
-        div.row 
-        div(class="container text-center")
-        div(class='dumbellAttr mr-3') dumbell ID is: 
-        div #{id} 
-        div.row 
-        div(class='p-2  bg-primary flex-fill dumbellAttr mr-3') dumbell Name is: 
-        div #{Dumbell_brand} 
-        div.row 
-        div(class='p-2 bg- danger flex-fill dumbellAttr mr-3') dumbell Company is: 
-        div #{Dumbell_material} 
-        div.row 
-        div(class='p-2 bg-secondary flex-fill dumbellAttr mr-3') dumbell Size is: 
+block content
+    h1= title
+
+    - let id = toShow._id
+    - let Dumbell_brand = toShow.Dumbell_brand
+    - let Dumbell_material = toShow.Dumbell_material
+    - let Dumbell_weight = toShow.Dumbell_weight
+
+    div
+      div.row
+        div(class='dumbellAttr mr-3') dumbell ID is:
+        div #{id}
+      div.row
+        div(class='dumbellAttr mr-3') dumbell Name is:
+        div #{Dumbell_brand}
+      div.row
+        div(class='dumbellAttr mr-3') dumbell Type is:
+        div #{Dumbell_material}
+      div.row
+        div(class='dumbellAttr mr-3') dumbell Size is:
         div #{Dumbell_weight}
-       
