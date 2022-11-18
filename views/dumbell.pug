@@ -2,23 +2,15 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
-  
-  -var results=[{"Dumbell_brand":"Rouge","Dumbell_material":"plaster","Dumbell_weight":"5"},{"Dumbell_brand":"ironmaster","Dumbell_material":"iron","Dumbell_weight":"10"},{"Dumbell_brand":"CAP","Dumbell_material":"sand","Dumbell_weight":"15"}]
-      div.container-fluid
-        div.row
-            each item,index in results
-                div.col-sm-2(onclick=`buy(${index})`) Dumbell Brand: #{item["Dumbell_brand"]} <br> Dumbell Material: #{item["Dumbell_material"]} <br> Dumbell Weight: #{item["Dumbell_weight"]}
-        script.
-              function buy(index) {
-                  alert("You purchased item " + index)
-              } 
+  - var results = results
+  div(class="container-fluid")
+    div(class="row m-1")
+      each item in results  
+        - let destination = `dispatch(\"/dumbell/update?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Item #{item.Dumbell_brand}(#{item.Dumbell_material}) is #{item.Dumbell_weight}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
 
-
-
-
-
-
-
-
-
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
