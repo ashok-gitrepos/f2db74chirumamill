@@ -1,0 +1,50 @@
+extends layout 
+
+block content 
+  h1= title 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let id = toShow._id 
+    - let Dumbell_brand = toShow.Dumbell_brand 
+    - let Dumbell_material = toShow.Dumbell_material 
+    - let Dumbell_weight = toShow.Dumbell_weight 
+    - let actionid = "/resource/dumbells/" + id 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class=' bg-primary dumbellAttr mr-3') dumbell ID is: 
+        div #{id} 
+      div.row 
+        div(class='bg-warning dumbellAttr mr-3') dumbell Name is: 
+        div #{Dumbell_brand} 
+      div.row 
+        div(class='dumbellAttr mr-3') dumbell Company  is: 
+        div #{Dumbell_material} 
+      div.row 
+        div(class='dumbellAttr mr-3') dumbell Size is: 
+        div #{Dumbell_weight} 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the dumbell collection 
+      window.location.href='/dumbell' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      // Don't need a body for the delete 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/dumbell' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    }
