@@ -2,15 +2,30 @@ extends layout
 
 block content
   h1= title
+    button.btn(class="btn-primary btn-sm ml-1", onclick=`createButtons(\"/dumbell/create\")`) Create
   - var results = results
-  div(class="container-fluid")
-    div(class="row m-1")
+  div(class="container-fluid") 
+    div(class="row m-1") 
       each item in results  
-        - let destination = `dispatch(\"/dumbell/update?id=${item._id}\")`
-        div(class="row-sm-2", class="m-1") Item #{item.Dumbell_brand}(#{item.Dumbell_material}) is #{item.Dumbell_weight}
-          button.btn( class="btn-primary ml-1", onclick= destination) Update
-
-  script.
-    function dispatch(path){
-      window.location.href=path
+        - let destination = `createButtons(\"/dumbell/update?id=${item._id}\")` 
+        div(class="row-sm-2", class="m-1") Item #{item.Dumbell_brand}(#{item.Dumbell_material}) is #{item.Dumbell_weight} 
+          button.btn(class="btn-success",  onclick=`createButtons(\"/dumbell/detail?id=${item._id}\")`) View
+          button.btn(class="btn-warning", onclick= `createButtons(\"/dumbell/update?id=${item._id}\")`) Update
+          button.btn(class="btn-danger",  onclick= `createButtons(\"/dumbell/delete?id=${item._id}\")`) Delete 
+   
+  script. 
+    function createButtons(path){ 
+      window.location.href=path 
     }
+    passport.use(new LocalStrategy(function(username, password, done) { 
+            Account.findOne({ username: username }, function (err, user) { 
+            if (err) { return done(err); } 
+            if (!user) { 
+                return done(null, false, { message: 'Incorrect username.' }); 
+            }
+            if (!user.validPassword(password)) { 
+                return done(null, false, { message: 'Incorrect password.' }); 
+            }
+            return done(null, user); 
+          }); 
+      })); 

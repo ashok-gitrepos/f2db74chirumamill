@@ -27,10 +27,7 @@ exports.dumbell_view_all_Page = async function(req, res) {
 exports.dumbell_create_post = async function(req, res) { 
     console.log(req.body) 
     let document = new dumbell(); 
-    // We are looking for a body, since POST does not have query parameters. 
-    // Even though bodies can be in many different formats, we will be picky 
-    // and require that it be a json object 
-    // {"Earp_Name":"Applepods", "Earp_Type":"Medium", "Earp_Size":3.5} 
+    
     document.Dumbell_brand = req.body.Dumbell_brand;
     document.Dumbell_material = req.body.Dumbell_material;
     document.Dumbell_weight = req.body.Dumbell_weight;
