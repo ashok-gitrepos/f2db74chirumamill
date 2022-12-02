@@ -7,6 +7,15 @@ var router = express.Router();
 //   res.render('dumbell', { title: 'Search Results for dumbell Class' });
 // });
 
+
+const secured = (req, res, next) => { 
+    if (req.user){ 
+      return next(); 
+    } 
+    req.session.returnTo = req.originalUrl; 
+    res.redirect("/login"); 
+  }
+
 /* GET dumbell */ 
 router.get('/', dumbell_controller.dumbell_view_all_Page ); 
 
@@ -20,7 +29,7 @@ router.get('/detail', dumbell_controller.dumbell_view_one_Page);
 router.get('/create', dumbell_controller.dumbell_create_Page); 
 
 /* GET create update page */ 
-router.get('/update', dumbell_controller.dumbell_update_Page);
+router.get('/update',secured, dumbell_controller.dumbell_update_Page);
 
 /* GET delete dumbell page */ 
 router.get('/delete', dumbell_controller.dumbell_delete_Page); 
